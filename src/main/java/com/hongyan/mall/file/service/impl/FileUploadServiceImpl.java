@@ -4,7 +4,6 @@ import com.github.tobato.fastdfs.domain.fdfs.MetaData;
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.domain.proto.ErrorCodeConstants;
 import com.github.tobato.fastdfs.exception.FdfsServerException;
-import com.hongyan.mall.file.LiteFileServiceProperties;
 import com.hongyan.mall.file.fastdfs.MultiConfigFileStorageClient;
 import com.hongyan.mall.file.service.FileUploadService;
 import com.hongyan.mall.file.vo.FileUploadResultVO;
@@ -32,14 +31,22 @@ import java.util.Set;
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 
-    @Autowired
-    private LiteFileServiceProperties fileServiceProperties;
+
     @Autowired
     private MultiConfigFileStorageClient storageClient;
 
+    public static final String HTTP_PROTOCOL ="https://";
+
+    private static final String RES_HOST = "jd.hongyanfuli.com";
+
+    private static final Integer FDFS_STORE_INDEX = 0;
+
+    private static final String FDFS_GROUP = "group1";
+
+
     @Override
     public FileUploadResultVO uploadFile(MultipartFile file) throws IOException {
-        return uploadFile(file, fileServiceProperties.getFdfsGroup(), fileServiceProperties.getFdfsStoreIndex());
+        return uploadFile(file, FDFS_GROUP, FDFS_STORE_INDEX);
     }
 
     @Override
@@ -53,7 +60,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     @Override
     public FileUploadResultVO uploadFile(File file) throws Exception {
-        return uploadFile(file, fileServiceProperties.getFdfsGroup(), fileServiceProperties.getFdfsStoreIndex());
+        return uploadFile(file, FDFS_GROUP, FDFS_STORE_INDEX);
     }
 
     @Override
@@ -68,7 +75,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     @Override
     public FileUploadResultVO uploadImageAndCrtThumbImage(MultipartFile file) throws IOException {
-        return uploadImageAndCrtThumbImage(file, fileServiceProperties.getFdfsGroup(), fileServiceProperties.getFdfsStoreIndex());
+        return uploadImageAndCrtThumbImage(file, FDFS_GROUP, FDFS_STORE_INDEX);
     }
 
     @Override
@@ -114,7 +121,7 @@ public class FileUploadServiceImpl implements FileUploadService {
      * @return
      */
     private String getResAccessUrl(StorePath storePath) {
-        return LiteFileServiceProperties.HTTP_PROTOCOL + fileServiceProperties.getResHost()+ "/" + storePath.getFullPath();
+        return HTTP_PROTOCOL + RES_HOST+ "/" + storePath.getFullPath();
     }
 
     /**
