@@ -5,8 +5,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.9</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.2.7.RELEASE</version>
+        <relativePath/>
     </parent>
     <groupId>com.hongyan</groupId>
     <artifactId>hongyan-mall</artifactId>
@@ -15,6 +15,13 @@
     <description>红岩商城</description>
     <properties>
         <java.version>1.8</java.version>
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <tobato-fastdfs-client.version>1.27.2</tobato-fastdfs-client.version>
+        <google-zxing.version>2.3.0</google-zxing.version>
+        <apache-httpclient>4.5.3</apache-httpclient>
     </properties>
     <dependencies>
         <dependency>
@@ -27,6 +34,31 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.tobato</groupId>
+            <artifactId>fastdfs-client</artifactId>
+            <version>${tobato-fastdfs-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>${google-zxing.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${apache-httpclient}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+
+
+
     </dependencies>
 
     <build>
